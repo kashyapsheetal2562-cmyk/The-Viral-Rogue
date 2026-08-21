@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>The Viral Rogue | Autonomous AI Growth Engine</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">VR</div>
+
+            <div>
+                <h2>Viral Rogue</h2>
+                <span>AI Growth Engine</span>
+            </div>
+        </div>
+
+     <nav>
+
+    <a href="#" class="active"
+       onclick="showDashboard(); return false;">
+        Dashboard
+    </a>
+
+    <a href="#"
+       onclick="openTrends(); return false;">
+        Trends
+    </a>
+
+    <a href="#"
+       onclick="generateContent(); return false;">
+        Content Lab
+    </a>
+
+    <a href="#"
+       onclick="openRiskCenter(); return false;">
+        Risk Center
+    </a>
+
+    <a href="#"
+       onclick="openAnalytics(); return false;">
+        Analytics
+    </a>
+
+</nav>
+
+        <div class="agent-status">
+            <div class="status-dot"></div>
+
+            <div>
+                <strong>Agent Online</strong>
+                <small>Autonomous Mode</small>
+            </div>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+        <!-- TOP BAR -->
+        <header class="topbar">
+
+            <div>
+                <p class="eyebrow">AUTONOMOUS SOCIAL INTELLIGENCE</p>
+                <h1>Good evening, Creator 👋</h1>
+                <p class="subtitle">
+                    Your AI agent is monitoring trends and optimizing your growth.
+                </p>
+            </div>
+
+            <button class="agent-button" onclick="runAgent()">
+                <span>✦</span> Run AI Agent
+            </button>
+
+        </header>
+
+
+        <!-- HERO -->
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <span class="badge">● AI AGENT ACTIVE</span>
+
+                <h2>
+                    Your growth runs itself.
+                    <span>Until it shouldn't.</span>
+                </h2>
+
+                <p>
+                    Viral Rogue discovers trends, creates content and takes
+                    growth actions automatically — while knowing when to stop
+                    and ask for human approval.
+                </p>
+
+                <div class="hero-actions">
+                    <button onclick="analyzeTrend()">
+                        Analyze Trending Topic
+                    </button>
+
+                    <button class="secondary" onclick="showRisk()">
+                        View Risk Center
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="agent-orb">
+
+                <div class="orb">
+                    <span>VR</span>
+                </div>
+
+                <p>DECISION ENGINE</p>
+
+            </div>
+
+        </section>
+
+
+        <!-- STATS -->
+        <section class="stats">
+
+            <div class="stat-card">
+                <span>🔥</span>
+                <p>Trending Signals</p>
+                <h3>24</h3>
+                <small>+18% today</small>
+            </div>
+
+            <div class="stat-card">
+                <span>⚡</span>
+                <p>Content Generated</p>
+                <h3>37</h3>
+                <small>12 ready to post</small>
+            </div>
+
+            <div class="stat-card">
+                <span>🎯</span>
+                <p>Virality Score</p>
+                <h3>92%</h3>
+                <small>High potential</small>
+            </div>
+
+            <div class="stat-card warning">
+                <span>🛑</span>
+                <p>Human Approvals</p>
+                <h3>3</h3>
+                <small>Agent paused safely</small>
+            </div>
+
+        </section>
+
+
+        <!-- WORKFLOW -->
+        <section class="section">
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="eyebrow">AUTONOMOUS WORKFLOW</p>
+                    <h2>How Viral Rogue thinks</h2>
+                </div>
+
+                <span class="live">● LIVE</span>
+
+            </div>
+
+
+            <div class="workflow">
+
+                <div class="workflow-card completed">
+                    <div class="number">01</div>
+                    <h3>Detect</h3>
+                    <p>Find emerging trends and viral signals.</p>
+                    <span>✓ Completed</span>
+                </div>
+
+                <div class="arrow">→</div>
+
+                <div class="workflow-card completed">
+                    <div class="number">02</div>
+                    <h3>Create</h3>
+                    <p>Generate content based on the trend.</p>
+                    <span>✓ Completed</span>
+                </div>
+
+                <div class="arrow">→</div>
+
+                <div class="workflow-card completed">
+                    <div class="number">03</div>
+                    <h3>Evaluate</h3>
+                    <p>Check virality, relevance and risk.</p>
+                    <span>✓ Completed</span>
+                </div>
+
+                <div class="arrow">→</div>
+
+                <div class="workflow-card decision">
+                    <div class="number">04</div>
+                    <h3>Decide</h3>
+                    <p>Act automatically or stop for approval.</p>
+                    <span>⚡ Decision Point</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TREND + RISK -->
+        <section class="bottom-grid">
+
+            <div class="panel">
+
+                <div class="panel-header">
+                    <div>
+                        <p class="eyebrow">TREND INTELLIGENCE</p>
+                        <h2>🔥 Trending Now</h2>
+                    </div>
+
+                    <span class="confidence">92% confidence</span>
+                </div>
+
+                <div class="trend-item">
+
+                    <div class="trend-icon">#</div>
+
+                    <div>
+                        <h3>#AIChallenge</h3>
+                        <p>Rapid growth detected across social platforms.</p>
+                    </div>
+
+                    <strong>+84%</strong>
+
+                </div>
+
+                <div class="trend-item">
+
+                    <div class="trend-icon">#</div>
+
+                    <div>
+                        <h3>#TechMemes</h3>
+                        <p>High engagement among target audience.</p>
+                    </div>
+
+                    <strong>+67%</strong>
+
+                </div>
+
+                <button class="full-button" onclick="generateContent()">
+                    Generate Content →
+                </button>
+
+            </div>
+
+
+            <div class="panel risk-panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <p class="eyebrow">SAFETY LAYER</p>
+                        <h2>🛡️ Decision Guard</h2>
+                    </div>
+
+                    <span class="safe">PROTECTED</span>
+
+                </div>
+
+                <div class="risk-box">
+
+                    <div class="risk-icon">✓</div>
+
+                    <div>
+                        <h3>Agent is operating safely</h3>
+                        <p>
+                            No high-risk decisions detected.
+                            Human approval is required for uncertain actions.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="decision-row">
+                    <span>Autonomous actions</span>
+                    <strong>Enabled</strong>
+                </div>
+
+                <div class="decision-row">
+                    <span>Risk threshold</span>
+                    <strong>Medium</strong>
+                </div>
+
+                <div class="decision-row">
+                    <span>Human override</span>
+                    <strong>Always available</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ACTIVITY -->
+        <section class="section">
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="eyebrow">AGENT ACTIVITY</p>
+                    <h2>Recent decisions</h2>
+                </div>
+
+            </div>
+
+            <div class="activity">
+
+                <div class="activity-item">
+                    <span class="activity-dot green"></span>
+
+                    <div>
+                        <strong>Trend detected</strong>
+                        <p>#AIChallenge has high viral potential.</p>
+                    </div>
+
+                    <time>2 min ago</time>
+                </div>
+
+                <div class="activity-item">
+                    <span class="activity-dot blue"></span>
+
+                    <div>
+                        <strong>Content generated</strong>
+                        <p>AI created 3 meme variations.</p>
+                    </div>
+
+                    <time>5 min ago</time>
+                </div>
+
+                <div class="activity-item">
+                    <span class="activity-dot orange"></span>
+
+                    <div>
+                        <strong>Human approval requested</strong>
+                        <p>Potentially sensitive trend detected.</p>
+                    </div>
+
+                    <time>8 min ago</time>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer>
+
+            <p>
+                THE VIRAL ROGUE
+                <span>•</span>
+                Autonomous until it shouldn't.
+            </p>
+
+            <p>
+                ArmorIQ Hackathon • Prototype
+            </p>
+
+        </footer>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
