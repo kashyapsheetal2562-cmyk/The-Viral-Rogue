@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://docs.armoriq.ai/schemas/armoriq.schema.json
+
+version: v1
+
+identity:
+  api_key: $ARMORIQ_API_KEY
+  user_id: default
+  agent_id: viral-rogue
+
+environment: sandbox
+
+proxy:
+  url: https://proxy.armoriq.ai
+  timeout: 30
+  max_retries: 3
+
+mcp_servers: []
+
+policy:
+  allow: []
+  deny: []
+
+intent:
+  ttl_seconds: 300
+  require_csrg: true

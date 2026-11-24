@@ -1,0 +1,809 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trend Intelligence | Viral Rogue</title>
+    <style>
+        
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #080912;
+    --panel: #111120;
+    --panel-light: #19152b;
+    --border: rgba(177, 139, 255, 0.20);
+    --purple: #b38aff;
+    --pink: #e65bb4;
+    --text: #f5f2ff;
+    --muted: #aaa7c3;
+    --green: #62e6ad;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 24px;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    color: var(--text);
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+    background:
+        radial-gradient(ellipse at 15% 8%, #47207835, transparent 34%),
+        radial-gradient(ellipse at 90% 25%, #9b347b17, transparent 30%),
+        var(--bg);
+}
+
+/* Top navigation */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    min-height: 78px;
+    padding: 16px clamp(20px, 5vw, 76px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(8, 9, 18, 0.86);
+    backdrop-filter: blur(18px);
+}
+
+.brand {
+    font-size: 21px;
+    font-weight: 850;
+    letter-spacing: -0.5px;
+}
+
+.brand span {
+    color: var(--purple);
+}
+
+button {
+    cursor: pointer;
+    border: 1px solid #494064;
+    border-radius: 12px;
+    padding: 12px 18px;
+    color: white;
+    background: #19152b;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 750;
+    transition: transform .2s, border-color .2s, filter .2s;
+}
+
+button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    border-color: var(--purple);
+    filter: brightness(1.15);
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: .45;
+}
+
+.primary {
+    border: 0;
+    background: linear-gradient(110deg, #7544d8, #d23f9b);
+    box-shadow: 0 8px 28px #8d43d52b;
+}
+
+/* Wide page layout */
+main {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 48px clamp(22px, 5vw, 76px) 80px;
+}
+
+.eyebrow {
+    color: var(--purple);
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-size: 11px;
+    font-weight: 850;
+}
+
+h1 {
+    margin: 12px 0;
+    max-width: 850px;
+    font-size: clamp(38px, 5vw, 66px);
+    line-height: 1.08;
+    letter-spacing: -2px;
+    background: linear-gradient(100deg, #fff 20%, #c8a5ff 65%, #f28acb);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+h2 {
+    letter-spacing: -.6px;
+}
+
+.muted {
+    color: var(--muted);
+    line-height: 1.8;
+}
+
+/* Page introduction */
+main > .eyebrow:first-child {
+    margin-top: 12px;
+}
+
+main > .muted {
+    max-width: 720px;
+    font-size: 15px;
+}
+
+/* Trends toolbar */
+.toolbar {
+    margin: 46px 0 22px;
+    padding: 22px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    background: linear-gradient(110deg, #171326e8, #10101be8);
+}
+
+.toolbar h2 {
+    margin: 0 0 6px;
+    font-size: 22px;
+}
+
+.toolbar .muted {
+    margin: 0;
+    font-size: 13px;
+}
+
+/* Trend cards */
+#trendList {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.trend-card,
+.result {
+    position: relative;
+    overflow: hidden;
+    background:
+        linear-gradient(145deg, #19162bea, #0e0e19f5);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 12px 35px #00000016;
+}
+
+.trend-card {
+    min-height: 235px;
+    cursor: pointer;
+    outline: none;
+    transition: transform .22s, border-color .22s, background .22s, box-shadow .22s;
+}
+
+.trend-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: 3px;
+    opacity: .35;
+    background: linear-gradient(90deg, #8050e8, #e65bb4);
+}
+
+.trend-card:hover,
+.trend-card:focus-visible {
+    transform: translateY(-5px);
+    border-color: #9669e8;
+    box-shadow: 0 16px 38px #7f45dc20;
+}
+
+.trend-card.selected {
+    border-color: #c29aff;
+    background: linear-gradient(145deg, #28203e, #151222);
+    box-shadow: 0 0 0 1px #bd8aff55, 0 16px 42px #8b48db25;
+}
+
+.trend-card.selected::before {
+    opacity: 1;
+}
+
+.tag {
+    color: #c7a8ff;
+    font-size: 13px;
+    font-weight: 850;
+}
+
+.trend-card h3 {
+    margin: 17px 0 0;
+    font-size: 20px;
+}
+
+.score {
+    margin: 22px 0 3px;
+    font-size: 39px;
+    font-weight: 850;
+    letter-spacing: -1px;
+}
+
+.trend-card .muted {
+    margin: 7px 0 20px;
+    font-size: 12px;
+}
+
+.card-bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding-top: 14px;
+    border-top: 1px solid #ffffff0d;
+    color: #c1badb;
+    font-size: 12px;
+}
+
+/* Loading and status */
+#status {
+    margin: 20px 0;
+    padding: 13px 16px;
+    color: #c7c3d9;
+    border: 1px solid #ffffff0c;
+    border-radius: 12px;
+    background: #ffffff04;
+    font-size: 13px;
+}
+
+/* Analysis action */
+.actions {
+    margin-top: 24px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+#analyzeBtn {
+    min-height: 48px;
+    padding: 14px 24px;
+    font-size: 14px;
+}
+
+/* Analysis result */
+.result {
+    margin-top: 30px;
+    padding: clamp(22px, 4vw, 38px);
+    border-color: #9669e85c;
+    background:
+        radial-gradient(ellipse at top right, #713bb71b, transparent 45%),
+        linear-gradient(145deg, #151426, #0d0d18);
+}
+
+.result h2 {
+    margin-top: 8px;
+    font-size: clamp(23px, 3vw, 32px);
+}
+
+.result-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    margin: 24px 0;
+}
+
+.metric {
+    min-height: 110px;
+    padding: 18px;
+    color: var(--muted);
+    border: 1px solid #ffffff0e;
+    border-radius: 14px;
+    background: #090a14a8;
+    font-size: 12px;
+}
+
+.metric strong {
+    display: block;
+    margin-top: 12px;
+    color: var(--text);
+    font-size: clamp(18px, 2vw, 25px);
+    overflow-wrap: anywhere;
+}
+
+#approval {
+    padding: 14px 16px;
+    border-radius: 12px;
+    background: #b38aff0c;
+    color: #d8c6ff;
+}
+
+#reasons {
+    padding-left: 22px;
+}
+
+#reasons li {
+    margin: 11px 0;
+    color: #c7c3d9;
+    line-height: 1.6;
+}
+
+#analysisNote {
+    font-size: 12px;
+}
+
+/* Responsive layout */
+@media (max-width: 1000px) {
+    #trendList {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .result-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    header {
+        min-height: 68px;
+        padding: 14px 16px;
+    }
+
+    .brand {
+        font-size: 17px;
+    }
+
+    header button {
+        padding: 10px 12px;
+        font-size: 12px;
+    }
+
+    main {
+        padding: 32px 16px 54px;
+    }
+
+    h1 {
+        letter-spacing: -1.2px;
+    }
+
+    .toolbar {
+        margin-top: 30px;
+        padding: 18px;
+    }
+
+    #trendList,
+    .result-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .trend-card {
+        min-height: 210px;
+    }
+
+    .result {
+        padding: 20px;
+    }
+}
+/* Sticky Analyze Action Bar */
+.actions {
+    position: sticky;
+    bottom: 0;
+    z-index: 20;
+    margin-top: 20px;
+    padding: 16px 0;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        #080912 25%
+    );
+}
+
+#analyzeBtn {
+    width: min(100%, 420px);
+    min-height: 52px;
+}
+    </style>
+</head>
+<body>
+<header>
+    <div class="brand">VR <span>Viral Rogue</span></div>
+    <button onclick="window.location.href='index.html'">← Dashboard</button>
+</header>
+
+<main>
+    <p class="eyebrow">Autonomous Social Intelligence</p>
+    <h1>Trend Intelligence</h1>
+    <p class="muted">
+        Explore available trend signals, select a topic and run it
+        through the backend risk-analysis engine.
+    </p>
+
+    <div class="toolbar">
+        <div>
+            <h2>Available Trends</h2>
+            <p class="muted">Select one trend to continue.</p>
+        </div>
+        <button onclick="loadTrends()">↻ Refresh Trends</button>
+    </div>
+
+<div class="toolbar" style="margin-top:20px;">
+    <div style="width:100%;">
+        <h2>Filter Trends</h2>
+        <p class="muted">Search topics, select a language or data source.</p>
+    </div>
+
+    <input
+        id="trendSearch"
+        type="search"
+        placeholder="Search trending topics..."
+        oninput="applyFilters()"
+        style="flex:2;min-width:200px;padding:13px;border-radius:10px;background:#111120;color:white;border:1px solid #494064;font:inherit;"
+    />
+
+    <select
+        id="languageFilter"
+        onchange="applyFilters()"
+        style="flex:1;min-width:150px;padding:13px;border-radius:10px;background:#19152b;color:white;border:1px solid #494064;"
+    >
+        <option value="all">All languages</option>
+        <option value="english">English</option>
+        <option value="hindi">Hindi</option>
+        <option value="other">Other languages</option>
+    </select>
+
+    
+<select
+    id="platformFilter"
+    onchange="applyFilters()"
+    style="flex:1;min-width:190px;padding:13px;border-radius:10px;background:#19152b;color:white;border:1px solid #494064;"
+>
+    <option value="all">All platforms</option>
+    <option value="Google Trends">Google Trends · Connected</option>
+    <option value="YouTube" disabled>YouTube · Not connected</option>
+    <option value="Instagram" disabled>Instagram · Not connected</option>
+    <option value="TikTok" disabled>TikTok · Not connected</option>
+    <option value="X" disabled>X / Twitter · Not connected</option>
+    <option value="Reddit" disabled>Reddit · Not connected</option>
+    <option value="Facebook" disabled>Facebook · Not connected</option>
+    <option value="Pinterest" disabled>Pinterest · Not connected</option>
+    <option value="LinkedIn" disabled>LinkedIn · Not connected</option>
+</select>
+
+<select
+    id="sortFilter"
+    onchange="applyFilters()"
+    style="flex:1;min-width:180px;padding:13px;border-radius:10px;background:#19152b;color:white;border:1px solid #494064;"
+>
+    <option value="default">Default order</option>
+    <option value="traffic">Highest search traffic</option>
+    <option value="newest">Newest trends</option>
+    <option value="alphabetical">A to Z</option>
+</select>
+
+
+</div>
+
+<p id="filterCount" class="muted"></p>
+
+ 
+
+    <div id="trendList"></div>
+    <p id="status" role="status">Loading trends...</p>
+
+    <div class="actions">
+        <button class="primary" id="analyzeBtn" onclick="analyzeSelected()" disabled>
+            Analyze Selected Trend →
+        </button>
+    </div>
+
+    <section class="result" id="result" aria-live="polite">
+        <p class="eyebrow">Backend Analysis</p>
+        <h2 id="resultTitle">Analysis Result</h2>
+        <div class="result-grid">
+            <div class="metric">Decision<strong id="decision">—</strong></div>
+            <div class="metric">Risk Level<strong id="riskLevel">—</strong></div>
+            <div class="metric">Risk Score<strong id="riskScore">—</strong></div>
+            <div class="metric">Confidence<strong id="confidence">—</strong></div>
+        </div>
+        <p id="approval"></p>
+        <h3>Analysis Reasons</h3>
+        <ul id="reasons"></ul>
+        <p class="muted" id="analysisNote">
+            This result comes from the current keyword-based backend rules,
+            not a trained AI model.
+        </p>
+    </section>
+</main>
+
+
+<script>
+    let trends = [];
+    let allTrends = [];
+    let selectedIndex = -1;
+
+    const trendList = document.getElementById("trendList");
+    const statusText = document.getElementById("status");
+    const analyzeBtn = document.getElementById("analyzeBtn");
+
+    async function loadTrends() {
+        statusText.textContent = "Fetching live trends from Google Trends...";
+        trendList.replaceChildren();
+        analyzeBtn.disabled = true;
+        selectedIndex = -1;
+        trends = [];
+
+        try {
+            const response = await fetch("/api/trends", {
+                cache: "no-store"
+            });
+
+            const data = await response.json();
+
+            if (!response.ok || data.success !== true ||
+                !Array.isArray(data.trends)) {
+                throw new Error(data.error || "Could not load trends.");
+            }
+
+            allTrends = data.trends;
+applyFilters();
+            statusText.textContent = trends.length
+                ? `${trends.length} live trends loaded · ${data.source || "Google Trends"} · ${data.region || "India"}`
+                : "No live trends are available right now.";
+
+        } catch (error) {
+            statusText.textContent =
+                "Could not load live trends. Check your Node.js server.";
+            console.error("Load trends error:", error);
+        }
+    }
+    
+
+function detectLanguage(title) {
+    if (/[\u0900-\u097F]/.test(title)) return "hindi";
+    if (/^[\x00-\x7F]*$/.test(title)) return "english";
+    return "other";
+}
+
+function applyFilters() {
+    const search = document
+        .getElementById("trendSearch")
+        .value.trim().toLowerCase();
+
+    const language = document.getElementById("languageFilter").value;
+    const platform = document.getElementById("platformFilter").value;
+    const sort = document.getElementById("sortFilter").value;
+
+    trends = allTrends.filter(trend => {
+        const title = trend.title || "";
+
+        const matchesSearch = title.toLowerCase().includes(search);
+
+        const matchesLanguage =
+            language === "all" ||
+            detectLanguage(title) === language;
+
+        const matchesPlatform =
+            platform === "all" ||
+            (trend.source || "Google Trends") === platform;
+
+        return matchesSearch && matchesLanguage && matchesPlatform;
+    });
+
+    // Sorting
+    if (sort === "traffic") {
+        trends.sort((a, b) =>
+            (Number(b.volume) || 0) - (Number(a.volume) || 0)
+        );
+    } else if (sort === "newest") {
+        trends.sort((a, b) =>
+            new Date(b.publishedAt || 0) -
+            new Date(a.publishedAt || 0)
+        );
+    } else if (sort === "alphabetical") {
+        trends.sort((a, b) =>
+            (a.title || "").localeCompare(
+                b.title || "",
+                undefined,
+                { sensitivity: "base" }
+            )
+        );
+    }
+
+    selectedIndex = -1;
+    analyzeBtn.disabled = true;
+
+    document.getElementById("filterCount").textContent =
+        `Showing ${trends.length} of ${allTrends.length} trends`;
+
+    renderTrends();
+
+    statusText.textContent = trends.length
+        ? `${trends.length} trends match your filters.`
+        : "No matching trends. Try changing your filters.";
+}
+
+
+    function renderTrends() {
+        trendList.replaceChildren();
+
+        if (trends.length === 0) {
+            statusText.textContent = "No trends to display. Try Refresh Trends.";
+            return;
+        }
+
+        trends.forEach((trend, index) => {
+            const card = document.createElement("article");
+            card.className = "trend-card";
+            card.tabIndex = 0;
+            card.setAttribute("role", "button");
+            card.setAttribute("aria-pressed", "false");
+
+            // Live label
+            const tag = document.createElement("div");
+            tag.className = "tag";
+            tag.textContent = "LIVE TREND · INDIA";
+
+            // Optional trend image
+            if (trend.picture) {
+                const image = document.createElement("img");
+                image.src = trend.picture;
+                image.alt = "";
+                image.loading = "lazy";
+                image.style.cssText =
+                    "width:100%;height:130px;object-fit:cover;" +
+                    "border-radius:12px;margin-top:16px;";
+                image.onerror = () => image.remove();
+                card.append(image);
+            }
+
+            // Trend title
+            const title = document.createElement("h3");
+            title.textContent = trend.title || "Untitled trend";
+
+            // Estimated search traffic
+            const score = document.createElement("div");
+            score.className = "score";
+            score.style.fontSize = "clamp(25px, 3vw, 36px)";
+            score.textContent = trend.traffic || "Not available";
+
+            const scoreLabel = document.createElement("p");
+            scoreLabel.className = "muted";
+            scoreLabel.textContent = "Estimated search traffic";
+
+            // Source and publication time
+            const details = document.createElement("div");
+            details.className = "card-bottom";
+
+            const source = document.createElement("span");
+            source.textContent = trend.source || "Google Trends";
+
+            const published = document.createElement("span");
+            if (trend.publishedAt) {
+                const date = new Date(trend.publishedAt);
+                published.textContent = Number.isNaN(date.getTime())
+                    ? "Time unavailable"
+                    : date.toLocaleString("en-IN", {
+                        day: "numeric",
+                        month: "short",
+                        hour: "2-digit",
+                        minute: "2-digit"
+                    });
+            } else {
+                published.textContent = "Time unavailable";
+            }
+
+            details.append(source, published);
+            card.append(tag, title, score, scoreLabel, details);
+
+            card.addEventListener("click", () => selectTrend(index));
+
+            card.addEventListener("keydown", event => {
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    selectTrend(index);
+                }
+            });
+
+            trendList.append(card);
+        });
+    }
+
+    function selectTrend(index) {
+        selectedIndex = index;
+
+        document.querySelectorAll(".trend-card").forEach((card, i) => {
+            const selected = i === index;
+            card.classList.toggle("selected", selected);
+            card.setAttribute("aria-pressed", String(selected));
+        });
+
+        analyzeBtn.disabled = false;
+        statusText.textContent = `Selected: ${trends[index].title}`;
+    }
+
+    async function analyzeSelected() {
+        if (selectedIndex < 0 || !trends[selectedIndex]) return;
+
+        const trend = trends[selectedIndex];
+        analyzeBtn.disabled = true;
+        analyzeBtn.textContent = "Analyzing...";
+        statusText.textContent = "Sending selected topic to the backend...";
+        document.getElementById("result").style.display = "none";
+
+        try {
+            const response = await fetch("/api/analyze", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    topic: trend.title || "Unknown trend"
+                })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok || data.success !== true) {
+                throw new Error(data.error || "Analysis request failed.");
+            }
+
+            document.getElementById("resultTitle").textContent =
+                `Results for ${trend.title}`;
+
+            document.getElementById("decision").textContent =
+                data.decision ?? "—";
+
+            document.getElementById("riskLevel").textContent =
+                data.riskLevel ?? "—";
+
+            document.getElementById("riskScore").textContent =
+                data.riskScore == null ? "—" : `${data.riskScore}/100`;
+
+            document.getElementById("confidence").textContent =
+                data.confidence == null
+                    ? "—"
+                    : `${Math.round(data.confidence * 100)}%`;
+
+            document.getElementById("approval").textContent =
+                `Human approval required: ${
+                    data.requiresHumanApproval ? "Yes" : "No"
+                }`;
+
+            const reasons = document.getElementById("reasons");
+            reasons.replaceChildren();
+
+            (Array.isArray(data.reasons) ? data.reasons : [])
+                .forEach(reason => {
+                    const li = document.createElement("li");
+                    li.textContent = reason;
+                    reasons.append(li);
+                });
+
+            document.getElementById("result").style.display = "block";
+            statusText.textContent =
+                "Analysis completed using the backend response.";
+
+            document.getElementById("result").scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+        } catch (error) {
+            statusText.textContent = error.message;
+            console.error("Trend analysis error:", error);
+        } finally {
+            analyzeBtn.disabled = selectedIndex < 0;
+            analyzeBtn.textContent = "Analyze Selected Trend →";
+        }
+    }
+
+    loadTrends();
+</script>
+
+</body>
+</html>

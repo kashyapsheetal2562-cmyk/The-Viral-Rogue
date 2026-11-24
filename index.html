@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="The Viral Rogue - Autonomous AI Growth and Risk Intelligence Platform"
+    >
+
+    <meta
+        name="theme-color"
+        content="#080912"
+    >
+
+    <title>The Viral Rogue | Autonomous AI Growth Engine</title>
+
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- ArmorIQ SDK -->
+    <script src="https://proxy.armoriq.ai/sdk.js"></script>
+
+    <!-- Meme / Image Export -->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+    ></script>
+</head>
+
+<body>
+
+    <!-- =========================================================
+         MOBILE MENU BUTTON
+    ========================================================== -->
+
+    <button
+        class="menu-toggle"
+        id="menuToggle"
+        onclick="toggleSidebar()"
+        aria-label="Open navigation menu"
+        aria-controls="sidebar"
+        aria-expanded="false"
+        type="button"
+    >
+        ☰
+    </button>
+
+
+    <!-- =========================================================
+         MOBILE SIDEBAR OVERLAY
+    ========================================================== -->
+
+    <div
+        class="sidebar-overlay"
+        id="sidebarOverlay"
+        onclick="toggleSidebar()"
+        aria-hidden="true"
+    ></div>
+
+
+    <!-- =========================================================
+         SIDEBAR
+    ========================================================== -->
+
+    <aside
+        class="sidebar"
+        id="sidebar"
+        aria-label="Main navigation"
+    >
+
+        <!-- Mobile Close -->
+        <button
+            class="sidebar-close"
+            onclick="toggleSidebar()"
+            aria-label="Close navigation menu"
+            type="button"
+        >
+        </button>
+
+
+        <!-- =====================================================
+             BRAND
+        ====================================================== -->
+
+        <div class="logo">
+
+            <div class="logo-icon" aria-hidden="true">
+                VR
+            </div>
+
+            <div class="logo-text">
+                <h2>Viral Rogue</h2>
+                <span>AI Growth Engine</span>
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             NAVIGATION
+        ====================================================== -->
+
+        <nav class="main-nav">
+
+            <a
+                href="#dashboard"
+                class="active"
+                data-section="dashboard"
+                onclick="showDashboard(); closeMobileSidebar(); return false;"
+            >
+                <span class="nav-icon" aria-hidden="true">▦</span>
+                <span class="nav-label">Dashboard</span>
+            </a>
+
+
+            <a
+                href="#trends"
+                data-section="trends"
+                onclick="openTrends(); closeMobileSidebar(); return false;"
+            >
+                <span class="nav-icon" aria-hidden="true">⌁</span>
+                <span class="nav-label">Trends</span>
+            </a>
+
+
+            <a
+                href="#content"
+                data-section="content"
+                onclick="generateContent(); closeMobileSidebar(); return false;"
+            >
+                <span class="nav-icon" aria-hidden="true">✎</span>
+                <span class="nav-label">Content Lab</span>
+            </a>
+
+
+            <a
+                href="#risk"
+                data-section="risk"
+                onclick="openRiskCenter(); closeMobileSidebar(); return false;"
+            >
+                <span class="nav-icon" aria-hidden="true">♢</span>
+                <span class="nav-label">Risk Center</span>
+            </a>
+
+
+            <a
+                href="#analytics"
+                data-section="analytics"
+                onclick="openAnalytics(); closeMobileSidebar(); return false;"
+            >
+                <span class="nav-icon" aria-hidden="true">▥</span>
+                <span class="nav-label">Analytics</span>
+            </a>
+
+        </nav>
+
+
+        <!-- =====================================================
+             SIDEBAR AGENT STATUS
+        ====================================================== -->
+
+        <div class="agent-status">
+
+            <div class="status-indicator">
+                <span class="status-dot"></span>
+            </div>
+
+            <div class="agent-status-text">
+                <strong>Agent Online</strong>
+                <small>Prototype Mode</small>
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================================================
+         MAIN APPLICATION
+    ========================================================== -->
+
+    <main
+        class="main"
+        id="mainContent"
+    >
+
+
+        <!-- =====================================================
+             TOP BAR
+        ====================================================== -->
+
+        <header class="topbar">
+
+            <div class="topbar-content">
+
+                <p class="eyebrow">
+                    AUTONOMOUS SOCIAL INTELLIGENCE
+                </p>
+
+                <h1 id="greeting">
+                    Good evening, Creator 👋
+                </h1>
+
+                <p class="subtitle">
+                    Your autonomous AI agent is ready to analyze
+                    trends, generate content and evaluate risk.
+                </p>
+
+            </div>
+
+
+            <button
+                class="agent-button"
+                onclick="runAgent()"
+                type="button"
+                id="runAgentButton"
+            >
+                <span aria-hidden="true">✦</span>
+                <span>Run AI Agent</span>
+            </button>
+
+        </header>
+
+
+        <!-- =====================================================
+             HERO
+        ====================================================== -->
+
+        <section
+            class="hero"
+            id="dashboard"
+        >
+
+            <div class="hero-content">
+
+                <span class="badge">
+                    <span class="badge-dot"></span>
+                    AI AGENT • PROTOTYPE
+                </span>
+
+
+                <h2>
+                    Your growth runs itself.
+                    <span>Until it shouldn't.</span>
+                </h2>
+
+
+                <p class="hero-description">
+                    Viral Rogue is an autonomous AI growth and
+                    intelligence platform designed to discover
+                    emerging trends, generate content, evaluate
+                    risk and decide when an action should proceed,
+                    require human approval or be blocked.
+                </p>
+
+
+                <div class="hero-actions">
+
+                    
+
+<button
+    type="button"
+    onclick="window.location.href='trends.html'">
+    Analyze Trending Topic →
+</button>
+
+
+                    <button
+                        class="secondary"
+                        onclick="showRisk()"
+                        type="button"
+                    >
+                        View Risk Center
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 DECISION ENGINE VISUAL
+            ================================================== -->
+
+            <div class="agent-orb">
+
+                <div class="orb-glow"></div>
+
+                <div class="orb">
+
+                    <span>VR</span>
+
+                </div>
+
+                <p>
+                    DECISION ENGINE
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             PLATFORM STATS
+        ====================================================== -->
+
+        <section
+            class="stats"
+            id="statsSection"
+        >
+
+            <!-- Trending -->
+            <div class="stat-card">
+
+                <div class="stat-icon purple">
+                    ↗
+                </div>
+
+                <div class="stat-info">
+
+                    <p>Trending Signals</p>
+
+                    <h3 id="trendingCount">
+                        24
+                    </h3>
+
+                    <small>
+                        Prototype data
+                    </small>
+
+                </div>
+
+                <span class="stat-change positive">
+                    ↑ 18%
+                </span>
+
+            </div>
+
+
+            <!-- Content -->
+            <div class="stat-card">
+
+                <div class="stat-icon pink">
+                    ◫
+                </div>
+
+                <div class="stat-info">
+
+                    <p>Content Generated</p>
+
+                    <h3 id="contentCount">
+                        37
+                    </h3>
+
+                    <small>
+                        Demo activity
+                    </small>
+
+                </div>
+
+                <span class="stat-change positive">
+                    ↑ 24%
+                </span>
+
+            </div>
+
+
+            <!-- Virality -->
+            <div class="stat-card">
+
+                <div class="stat-icon cyan">
+                    ◎
+                </div>
+
+                <div class="stat-info">
+
+                    <p>Virality Score</p>
+
+                    <h3 id="viralityScore">
+                        92%
+                    </h3>
+
+                    <small>
+                        Example signal
+                    </small>
+
+                </div>
+
+                <span class="stat-change positive">
+                    ↑ 12%
+                </span>
+
+            </div>
+
+
+            <!-- Approvals -->
+            <div class="stat-card warning">
+
+                <div class="stat-icon orange">
+                    ♢
+                </div>
+
+                <div class="stat-info">
+
+                    <p>Human Approvals</p>
+
+                    <h3 id="approvalCount">
+                        3
+                    </h3>
+
+                    <small>
+                        Example activity
+                    </small>
+
+                </div>
+
+                <span class="stat-change warning-change">
+                    ↑ 0%
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             VIRAL DECISION ENGINE
+        ====================================================== -->
+
+        <section
+            class="decision-engine"
+            id="decisionEngine"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="eyebrow">
+                        AUTONOMOUS AI
+                    </p>
+
+                    <h2>
+                        Viral Decision Engine
+                    </h2>
+
+                    <p>
+                        Describe a content idea, campaign or
+                        autonomous action. Viral Rogue will evaluate
+                        the input and determine whether the action
+                        can proceed, requires human approval or
+                        should be blocked.
+                    </p>
+
+                </div>
+
+                <span class="engine-status">
+                    <span></span>
+                    READY
+                </span>
+
+            </div>
+
+
+            <!-- Decision Input -->
+
+            <div class="decision-input">
+
+                <textarea
+                    id="contentIdea"
+                    name="contentIdea"
+                    placeholder="Example: Create a funny meme for college students about exam season..."
+                    rows="5"
+                    maxlength="5000"
+                ></textarea>
+
+
+                <div class="input-footer">
+
+                    <span id="characterCount">
+                        0 / 5000
+                    </span>
+
+
+                    <button
+                         
+                        class="analyze-btn"
+                        type="button"
+                        id="analyzeButton"
+                    >
+                        <span>⚡</span>
+                        ANALYZE WITH AI
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- AI Analysis Result -->
+
+            <div
+                id="aiAnalysis"
+                class="ai-analysis"
+                aria-live="polite"
+            >
+
+                <div class="scanning">
+
+                    <div class="scan-dot"></div>
+
+                    <span id="scanText">
+                        Decision engine ready...
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             AUTONOMOUS WORKFLOW
+        ====================================================== -->
+
+        <section
+            class="section workflow-section"
+            id="workflowSection"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="eyebrow">
+                        AUTONOMOUS WORKFLOW
+                    </p>
+
+                    <h2>
+                        How Viral Rogue thinks
+                    </h2>
+
+                </div>
+
+
+                <span class="live">
+                    <span></span>
+                    LIVE
+                </span>
+
+            </div>
+
+
+            <div class="workflow">
+
+
+                <!-- STEP 01 -->
+
+                <div class="workflow-card completed">
+
+                    <div class="number">
+                        01
+                    </div>
+
+                    <div class="workflow-icon">
+                        ◎
+                    </div>
+
+                    <h3>
+                        Detect
+                    </h3>
+
+                    <p>
+                        Find emerging trends, conversations
+                        and viral signals.
+                    </p>
+
+                    <span>
+                        ✓ Pipeline Ready
+                    </span>
+
+                </div>
+
+
+                <div class="arrow">
+                    →
+                </div>
+
+
+                <!-- STEP 02 -->
+
+                <div class="workflow-card completed">
+
+                    <div class="number">
+                        02
+                    </div>
+
+                    <div class="workflow-icon">
+                        ✦
+                    </div>
+
+                    <h3>
+                        Create
+                    </h3>
+
+                    <p>
+                        Generate platform-aware content
+                        from detected opportunities.
+                    </p>
+
+                    <span>
+                        ✓ Pipeline Ready
+                    </span>
+
+                </div>
+
+
+                <div class="arrow">
+                    →
+                </div>
+
+
+                <!-- STEP 03 -->
+
+                <div class="workflow-card completed">
+
+                    <div class="number">
+                        03
+                    </div>
+
+                    <div class="workflow-icon">
+                        ◇
+                    </div>
+
+                    <h3>
+                        Evaluate
+                    </h3>
+
+                    <p>
+                        Check virality, relevance, safety
+                        and potential risk.
+                    </p>
+
+                    <span>
+                        ✓ Risk Engine Ready
+                    </span>
+
+                </div>
+
+
+                <div class="arrow">
+                    →
+                </div>
+
+
+                <!-- STEP 04 -->
+
+                <div class="workflow-card decision">
+
+                    <div class="number">
+                        04
+                    </div>
+
+                    <div class="workflow-icon">
+                        ⚡
+                    </div>
+
+                    <h3>
+                        Decide
+                    </h3>
+
+                    <p>
+                        Proceed automatically, request
+                        approval or block the action.
+                    </p>
+
+                    <span>
+                        ⚡ Decision Point
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             TREND + RISK GRID
+        ====================================================== -->
+
+        <section
+            class="bottom-grid"
+            id="trends"
+        >
+
+
+            <!-- =================================================
+                 TREND INTELLIGENCE
+            ================================================== -->
+
+            <div
+                class="panel"
+                id="trendPanel"
+            >
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            TREND INTELLIGENCE
+                        </p>
+
+                        <h2>Trending Signals</h2>
+<p id="trendsStatus" aria-live="polite">
+    Loading trends...
+</p>
+                    </div>
+
+                    <span class="confidence">
+                        Prototype
+                    </span>
+
+                </div>
+
+
+                <!-- Trend 01 -->
+
+                <div class="trend-item">
+
+                    <div class="trend-icon">
+                        #
+                    </div>
+
+                    <div class="trend-content">
+
+                        <h3>
+                            #AIChallenge
+                        </h3>
+
+                        <p>
+                            Example trend signal for the
+                            prototype dashboard.
+                        </p>
+
+                    </div>
+
+                    <strong>
+                        +84%
+                    </strong>
+
+                </div>
+
+
+                <!-- Trend 02 -->
+
+                <div class="trend-item">
+
+                    <div class="trend-icon">
+                        #
+                    </div>
+
+                    <div class="trend-content">
+
+                        <h3>
+                            #TechMemes
+                        </h3>
+
+                        <p>
+                            Example engagement signal for
+                            the prototype.
+                        </p>
+
+                    </div>
+
+                    <strong>
+                        +67%
+                    </strong>
+
+                </div>
+
+
+                <!-- Trend 03 -->
+
+                <div class="trend-item">
+
+                    <div class="trend-icon">
+                        #
+                    </div>
+
+                    <div class="trend-content">
+
+                        <h3>
+                            #FutureOfAI
+                        </h3>
+
+                        <p>
+                            Example emerging conversation
+                            signal.
+                        </p>
+
+                    </div>
+
+                    <strong>
+                        +51%
+                    </strong>
+
+                </div>
+
+
+                <button
+                    class="full-button"
+                    onclick="generateContent()"
+                    type="button"
+                >
+                    Generate Content
+                    <span>→</span>
+                </button>
+
+            </div>
+
+
+            <!-- =================================================
+                 RISK CENTER
+            ================================================== -->
+
+            <div
+                class="panel risk-panel"
+                id="riskPanel"
+            >
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            SAFETY LAYER
+                        </p>
+
+                        <h2>
+                            Decision Guard
+                        </h2>
+
+                    </div>
+
+                    <span
+                        class="safe"
+                        id="riskStatus"
+                    >
+                        PROTECTED
+                    </span>
+
+                </div>
+
+
+                <!-- Risk Overview -->
+
+                <div class="risk-box">
+
+                    <div class="risk-icon">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Risk monitoring enabled
+                        </h3>
+
+                        <p>
+                            The decision engine evaluates
+                            actions before autonomous execution.
+                            Uncertain or sensitive actions can
+                            be routed for human approval.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Risk Rows -->
+
+                <div class="decision-row">
+
+                    <span>
+                        Autonomous actions
+                    </span>
+
+                    <strong>
+                        Guarded
+                    </strong>
+
+                </div>
+
+
+                <div class="decision-row">
+
+                    <span>
+                        Risk threshold
+                    </span>
+
+                    <strong>
+                        Medium
+                    </strong>
+
+                </div>
+
+
+                <div class="decision-row">
+
+                    <span>
+                        Human override
+                    </span>
+
+                    <strong>
+                        Available
+                    </strong>
+
+                </div>
+
+
+                <div class="decision-row">
+
+                    <span>
+                        Decision API
+                    </span>
+
+                    <strong id="apiStatus">
+                        Connected
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             AGENT ACTIVITY
+        ====================================================== -->
+
+        <section
+            class="section activity-section"
+            id="activitySection"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="eyebrow">
+                        AGENT ACTIVITY
+                    </p>
+
+                    <h2>
+                        Recent decisions
+                    </h2>
+
+                </div>
+
+                <button
+                    class="text-button"
+                    type="button"
+                    onclick="showDashboard()"
+                >
+                    View all →
+                </button>
+
+            </div>
+
+
+            <div
+                class="activity"
+                id="activityLog"
+            >
+
+
+                <!-- Activity 01 -->
+
+                <div class="activity-item">
+
+                    <span class="activity-dot green"></span>
+
+                    <div class="activity-icon">
+                        ◎
+                    </div>
+
+                    <div class="activity-content">
+
+                        <strong>
+                            Trend detected
+                        </strong>
+
+                        <p>
+                            Example trend signal identified.
+                        </p>
+
+                    </div>
+
+                    <time>
+                        Demo
+                    </time>
+
+                </div>
+
+
+                <!-- Activity 02 -->
+
+                <div class="activity-item">
+
+                    <span class="activity-dot blue"></span>
+
+                    <div class="activity-icon">
+                        ◫
+                    </div>
+
+                    <div class="activity-content">
+
+                        <strong>
+                            Content generated
+                        </strong>
+
+                        <p>
+                            Example content generation event.
+                        </p>
+
+                    </div>
+
+                    <time>
+                        Demo
+                    </time>
+
+                </div>
+
+
+                <!-- Activity 03 -->
+
+                <div class="activity-item">
+
+                    <span class="activity-dot orange"></span>
+
+                    <div class="activity-icon">
+                        ♢
+                    </div>
+
+                    <div class="activity-content">
+
+                        <strong>
+                            Human approval requested
+                        </strong>
+
+                        <p>
+                            Example safety escalation event.
+                        </p>
+
+                    </div>
+
+                    <time>
+                        Demo
+                    </time>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             SYSTEM ARCHITECTURE
+        ====================================================== -->
+
+        <section
+            class="section architecture-section"
+            id="architectureSection"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="eyebrow">
+                        SYSTEM INTELLIGENCE
+                    </p>
+
+                    <h2>
+                        Autonomous AI Architecture
+                    </h2>
+
+                    <p>
+                        The core agents working together behind
+                        the Viral Rogue decision pipeline.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="workflow">
+
+
+                <!-- Trend Agent -->
+
+                <div class="workflow-card">
+
+                    <div class="number">
+                        AI
+                    </div>
+
+                    <div class="workflow-icon">
+                        ↗
+                    </div>
+
+                    <h3>
+                        Trend Agent
+                    </h3>
+
+                    <p>
+                        Detects emerging topics and
+                        potential growth opportunities.
+                    </p>
+
+                </div>
+
+
+                <!-- Content Agent -->
+
+                <div class="workflow-card">
+
+                    <div class="number">
+                        AI
+                    </div>
+
+                    <div class="workflow-icon">
+                        ✦
+                    </div>
+
+                    <h3>
+                        Content Agent
+                    </h3>
+
+                    <p>
+                        Converts opportunities into
+                        platform-ready content ideas.
+                    </p>
+
+                </div>
+
+
+                <!-- Risk Agent -->
+
+                <div class="workflow-card">
+
+                    <div class="number">
+                        AI
+                    </div>
+
+                    <div class="workflow-icon">
+                        ♢
+                    </div>
+
+                    <h3>
+                        Risk Agent
+                    </h3>
+
+                    <p>
+                        Evaluates safety, uncertainty,
+                        sensitive actions and risk.
+                    </p>
+
+                </div>
+
+
+                <!-- Decision Agent -->
+
+                <div class="workflow-card decision">
+
+                    <div class="number">
+                        AI
+                    </div>
+
+                    <div class="workflow-icon">
+                        ⚡
+                    </div>
+
+                    <h3>
+                        Decision Agent
+                    </h3>
+
+                    <p>
+                        Determines whether to proceed,
+                        request approval or block.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             FOOTER
+        ====================================================== -->
+
+        <footer>
+
+            <div>
+
+                <strong>
+                    THE VIRAL ROGUE
+                </strong>
+
+                <span>
+                    •
+                </span>
+
+                <span>
+                    Autonomous until it shouldn't.
+                </span>
+
+            </div>
+
+            <p>
+                ArmorIQ Hackathon • Prototype
+            </p>
+
+        </footer>
+
+    </main>
+
+
+    <!-- =========================================================
+         APPLICATION JAVASCRIPT
+    ========================================================== -->
+
+    <script src="api-config.js"></script>
+<script src="script.js"></script>
+
+</body>
+
+</html>
